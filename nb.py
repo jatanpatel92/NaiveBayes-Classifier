@@ -91,7 +91,7 @@ def test_nb_model(file):
         if(classification==test_data[i][attributes]):
             accuracy+=1
     accuracy = (accuracy/count)*100
-    print("Accuracy:"+str(accuracy))
+    print("Accuracy: "+str(accuracy)+"%")
 
 print("Accuracy on training dataset")
 test_nb_model(train_file)
