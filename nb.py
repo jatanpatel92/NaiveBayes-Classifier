@@ -21,9 +21,9 @@ for line in open(train_file,'r'):
         data.append(row)
     instance = instance + 1;
 
-print(data)
-print(attributes)
-print(instance)
+#print(data)
+#print(attributes)
+#print(instance)
 
 for i in range(len(data)):
     if(data[i][attributes]=="0"):
@@ -33,15 +33,15 @@ for i in range(len(data)):
 
 p_class_0 = count_class_0/instance
 p_class_1 = count_class_1/instance
-print(count_class_0)
-print(count_class_1)
-print(p_class_0)
-print(p_class_1)
+#print(count_class_0)
+#print(count_class_1)
+#print(p_class_0)
+#print(p_class_1)
 
 for i in range(attributes):
     joint_distribution.append([[0,0],[0,0]])
 
-print(attributes)
+#print(attributes)
 
 for i in range(instance):
     for j in range(attributes):
@@ -54,7 +54,7 @@ for i in range(instance):
         elif (data[i][j]=="1" and data[i][attributes]=="0"):
             joint_distribution[j][1][0]+=1
         
-print(joint_distribution)
+#print(joint_distribution)
 
 for i in range(len(joint_distribution)):
     joint_distribution[i][0][0]=joint_distribution[i][0][0]/count_class_0
@@ -62,7 +62,7 @@ for i in range(len(joint_distribution)):
     joint_distribution[i][0][1]=joint_distribution[i][0][1]/count_class_1
     joint_distribution[i][1][1]=joint_distribution[i][1][1]/count_class_1
 
-print(joint_distribution)
+#print(joint_distribution)
 
 def test_nb_model(file):
     accuracy = 0
@@ -80,9 +80,9 @@ def test_nb_model(file):
         for j in range(len(test_data[i])-1):
             if (test_data[i][j]=="0"):
                 p_of_0 = p_of_0 * joint_distribution[j][0][0]
-                p_of_1 = p_of_1 * joint_distribution[j][1][0]
+                p_of_1 = p_of_1 * joint_distribution[j][0][1]
             elif (test_data[i][j]=="1"):
-                p_of_0 = p_of_0 * joint_distribution[j][0][1]
+                p_of_0 = p_of_0 * joint_distribution[j][1][0]
                 p_of_1 = p_of_1 * joint_distribution[j][1][1]
         if (p_of_0>p_of_1):
             classification = "0"
@@ -94,6 +94,9 @@ def test_nb_model(file):
     print("Accuracy: "+str(accuracy)+"%")
 
 print("Accuracy on training dataset")
+print("============================")
 test_nb_model(train_file)
+print("===========================")
 print("Accuracy on testing dataset")
+print("===========================")
 test_nb_model(test_file)
