@@ -1,9 +1,6 @@
 # NaiveBayes Classifier for binary attributes
 
-- Developed by:
-
-1) Jatan Patel (jjp140230)
-2) Lingyan Wu (lxw160230)
+- Developed by: Jatan Patel
 
 - Requirements:
 Python 2.7
